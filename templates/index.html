@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Предсказание сварки</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* Шрифт для всего документа */
+            background-color: #f4f4f4; /* Цвет фона */
+            margin: 20px; /* Отступы вокруг страницы */
+        }
+        h1, h3 {
+            color: #333; /* Цвет заголовков */
+        }
+        form {
+            background-color: #fff; /* Цвет фона формы */
+            padding: 20px; /* Внутренние отступы формы */
+            border-radius: 8px; /* Закругленные углы */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Тень для формы */
+        }
+        label {
+            display: block; /* Блоковый элемент для меток */
+            margin: 10px 0 5px; /* Отступы для меток */
+        }
+        input[type="text"] {
+            width: 100%; /* Поля ввода на всю ширину */
+            padding: 10px; /* Внутренние отступы полей ввода */
+            border: 1px solid #ccc; /* Цвет рамки */
+            border-radius: 4px; /* Закругленные углы */
+            margin-bottom: 15px; /* Отступ снизу */
+            box-sizing: border-box; /* Учитывать отступы и рамки в ширине */
+        }
+        input[type="submit"] {
+            background-color: #4CAF50; /* Цвет кнопки */
+            color: white; /* Цвет текста кнопки */
+            padding: 10px 15px; /* Внутренние отступы кнопки */
+            border: none; /* Без рамки */
+            border-radius: 4px; /* Закругленные углы */
+            cursor: pointer; /* Указатель при наведении */
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049; /* Цвет кнопки при наведении */
+        }
+    </style>
+</head>
+<body>
+<h1>Предсказание длины и ширины сварки</h1>
+<form action="/predict" method="post">
+    <h3>Введите значения</h3>
+    <label for="IW">Сварочный ток, A:</label>
+    <input type="text" id="IW" name="IW" required>
+
+    <label for="IF">Ток форсунки электронного пучка, A:</label>
+    <input type="text" id="IF" name="IF" required>
+
+    <label for="VW">Скорость сварки, мм/с:</label>
+    <input type="text" id="VW" name="VW" required>
+
+    <label for="FP">Расстояние до электронно-оптической системы, мм:</label>
+    <input type="text" id="FP" name="FP" required>
+
+    <input type="submit" value="Предсказать">
+</form>
+
+{% if prediction %}
+<h2>Результаты предсказания:</h2>
+<p>Длина сварки: {{ prediction.depth | round(2) }} мм</p>
+<p>Ширина сварки: {{ prediction.width | round(2) }} мм</p>
+{% endif %}
+
+{% if metrics %}
+
+
+{% endif %}
+</body>
+</html>
