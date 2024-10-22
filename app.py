@@ -5,7 +5,7 @@ import numpy as np
 app = Flask(__name__)
 
 # Загрузите и подготовьте модель
-data_path = '/Users/sergeisafin/PycharmProjects/Svarka/.venv/ebw_data.csv'  # Укажите путь к вашему CSV-файлу
+data_path = 'ebw_data.csv'  # Укажите путь к вашему CSV-файлу
 welding_model = WeldingModel(data_path)
 welding_model.prepare_data()
 welding_model.train_models()
